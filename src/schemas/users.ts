@@ -14,6 +14,12 @@ export const registerUserSchema = z.object({
     role: z.enum(['user', 'admin']).optional()
 });
 
+export const updateUserSchema = z.object({
+    name: z.string().min(2, 'Name must be at least 2 characters'),
+    role: z.enum(['user', 'admin'], 'Role must be admin or user').optional()
+});
+
 //Inferencia de tipos de schemas
 export type RegisterUserInput = z.infer<typeof registerUserSchema>; 
 export type LoginUserInput = z.infer<typeof loginUserSchema>; 
+export type UpdateUserInput = z.infer<typeof updateUserSchema>;
