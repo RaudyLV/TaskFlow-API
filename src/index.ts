@@ -27,7 +27,7 @@ app.use(cors({credentials: true}));
 app.use(express.urlencoded({extended: true}));
 
 
-app.use('/auth', router()); // Rutas de la API 
+app.use('/api', router()); // Rutas de la API 
 app.use(errorHandler); // Manejador de errores global
 
 server.listen(PORT, () => {
