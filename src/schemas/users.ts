@@ -15,7 +15,7 @@ export const registerUserSchema = z.object({
 });
 
 export const updateUserSchema = z.object({
-    name: z.string().min(2, 'Name must be at least 2 characters'),
+    name: z.string().min(2, 'Name must be at least 2 characters').optional(),
     role: z.enum(['user', 'admin'], 'Role must be admin or user').optional()
 });
 
