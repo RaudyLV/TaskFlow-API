@@ -3,9 +3,23 @@ import { findById, update, deleteUser, getAll } from "../repositories/users";
 import { IUser } from "../models/users";
 
 
-export const getAllUsers = async (): Promise<IUser[] | null> => await getAll();
+export const getAllUsers = async (): Promise<IUser[] | null> => {
+    const users = await getAll();
+    if(!users || users.length == 0){
+        throw new ApiError(404, 'No users were found.');
+    }
 
-export const getUserById = async(id: string): Promise<IUser | null> => await findById(id);
+    return users
+}
+
+export const getUserById = async(id: string): Promise<IUser | null> => {
+    const user = await findById(id);
+    if(!user){
+        throw new ApiError(404, 'User not found.');
+    }
+
+    return user;
+}
 
 export const updateUser = async(id: string, userData: Partial<IUser>): Promise<IUser | null> =>{
     try {    

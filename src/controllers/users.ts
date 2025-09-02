@@ -5,10 +5,6 @@ import { ApiError } from "../utils/ApiError";
 export const getAllUsersController = async(req: Request, res: Response, next: NextFunction) => {
     try{
         var users = await getAllUsers();
-        
-        if(!users || users.length == 0){
-            throw new ApiError(404, 'There is no users');
-        }
 
         return res.status(200).json(users);
     }catch(err){
@@ -24,10 +20,6 @@ export const getUserByIdController = async(req: Request, res: Response, next: Ne
 
     try{
         const user = await getUserById(id);
-
-        if(!user) {
-            throw new ApiError(404, "User not found.");
-        }
 
         return res.status(200).json(user);
 
