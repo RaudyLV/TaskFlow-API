@@ -1,5 +1,5 @@
 import { ApiError } from "../utils/ApiError";
-import { findById, update, deleteUser, getAll } from "../repositories/users";
+import { findById, update, deleteUser, getAll, fingBySessionToken } from "../repositories/users";
 import { IUser } from "../models/users";
 
 
@@ -20,6 +20,8 @@ export const getUserById = async(id: string): Promise<IUser | null> => {
 
     return user;
 }
+
+export const getBySessionToken = (token: string) => fingBySessionToken(token);
 
 export const updateUser = async(id: string, userData: Partial<IUser>): Promise<IUser | null> =>{
     try {    

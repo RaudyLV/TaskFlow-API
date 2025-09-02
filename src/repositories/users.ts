@@ -5,6 +5,11 @@ export const getAll = (): Promise<IUser[]> => User.find();
 export const findByEmail = (email: string): Promise<IUser | null> => User.findOne({email})
                                                                             .select('+authentication.salt +authentication.password');
 
+
+
+export const fingBySessionToken = (token: string) => User.findOne({
+    'authentication.sessionToken': token
+});
 export const  findById = (id: string): Promise<IUser | null> => User.findById(id);
 
 export const create = (userData: Partial<IUser>): Promise<IUser> =>{
